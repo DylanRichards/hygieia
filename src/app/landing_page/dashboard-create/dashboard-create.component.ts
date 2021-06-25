@@ -117,7 +117,7 @@ export class DashboardCreateComponent implements OnInit {
 
   private getSelectedTemplate(): string[] {
     const selectedTemplate: DTemplate = this.templates.find(template => template.status === true);
-    if (selectedTemplate && selectedTemplate.name === 'CapOne') {
+    if (selectedTemplate && selectedTemplate.name === '3M - Firebird') {
       return this.widgetNames;
     }
   }
