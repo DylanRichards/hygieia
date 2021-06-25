@@ -6,8 +6,9 @@ sed -in 's/#LoadModule ssl_module/LoadModule ssl_module/g' /usr/local/apache2/co
 sed -in '/<Directory "\/usr\/local\/apache2\/htdocs">/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /usr/local/apache2/conf/httpd.conf
 sed -in 's/#LoadModule rewrite_module/LoadModule rewrite_module/' /usr/local/apache2/conf/httpd.conf
 
+echo "ServerName host.docker.internal" >> /usr/local/apache2/conf/httpd.conf
 echo "SSLProxyEngine on" >> /usr/local/apache2/conf/httpd.conf
-echo "ProxyPass /api $API_URL/api retry=0" >> /usr/local/apache2/conf/httpd.conf
-echo "ProxyPass /apiaudit $API_URL/apiaudit retry=0" >> /usr/local/apache2/conf/httpd.conf
+echo "ProxyPass /api $API_URL:8080/api retry=0" >> /usr/local/apache2/conf/httpd.conf
+echo "ProxyPass /apiaudit $API_URL:8081/apiaudit retry=0" >> /usr/local/apache2/conf/httpd.conf
 
 httpd-foreground
